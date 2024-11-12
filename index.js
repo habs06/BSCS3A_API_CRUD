@@ -30,7 +30,7 @@ connection.connect();
 //GET request and response are the parameters
 app.get("/api/members", (req, res) =>{
     //create a query
-    connection.query("SELECT * FROM userdata",(err, rows, fields)=>{
+    connection.query("SELECT * FROM student",(err, rows, fields)=>{
         //checking errors
         if(err) throw err;
         //response
@@ -44,7 +44,7 @@ app.get("/api/members", (req, res) =>{
 //request - >>> front-end ID
 app.get("/api/members/:id",(req, res)=>{
     const id=req.params.id; 
-    connection.query(`SELECT * FROM userdata WHERE id='${id}'`, (err, rows, fields)=>{
+    connection.query(`SELECT * FROM student WHERE id='${id}'`, (err, rows, fields)=>{
         if(err) throw err;
 
         if(rows.length > 0){
