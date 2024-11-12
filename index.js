@@ -16,10 +16,10 @@ const logger = (req, res, next) =>{
 app.use(logger)
 //connection to mysql
 const connection = mysql.createConnection({
-    host: "b6yr4hcmpxaax5ntf2lt-mysql.services.clever-cloud.com",
-    user: "utmqohrwo5xdveyx",
-    password: "0ceXddwnEhlrQYpCkCE6",
-    database: "b6yr4hcmpxaax5ntf2lt",
+    host: "bxiq4xdmaxjhcdjtt2cp-mysql.services.clever-cloud.com",
+    user: "upfx9ynfvxjledci",
+    password: "WvdbxAOwijojuZDMK2Xz",
+    database: "bxiq4xdmaxjhcdjtt2cp",
 });
 
 //initilization of connection
@@ -69,38 +69,4 @@ app.post("/api/members", (req, res)=>{
         res.json({msg: `Successfully inserted`});
     })
 
-})
-
-//CRUD
-//API
-//PUT - UPDATE
-app.use(express.urlencoded({ extended: false }));
-app.put("/api/members", (req, res) => {
-  const fname = req.body.fname;
-  const lname = req.body.lname;
-  const email = req.body.email;
-  const gender = req.body.gender;
-  const id = req.body.id;
-  connection.query(
-    `UPDATE userdata SET first_name='${fname}', last_name='${lname}', email='${email}', gender='${gender}' WHERE id='${id}'`,
-    (err, rows, fields) => {
-      if (err) throw err; 
-      res.json({ msg: `Successfully updated!` });
-    }
-  );
-});
-
-//DELETE API
-app.use(express.urlencoded({ extended: false}));
-app.delete("/api/members", (req, res) =>{
-    const id=req.body.id;
-    connection.query(`DELETE FROM userdata WHERE id='${id}'`, (err, rows, fields)=>{
-        if(err) throw err
-        res.json({msg: `Successfully deleted!`})
-    })
-})
-
-
-app.listen(5000, () => {
-    console.log(`Server is running in port ${PORT}`);
 })
